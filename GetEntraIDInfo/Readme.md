@@ -11,12 +11,27 @@ This PowerShell script fetches and displays information about an Entra ID tenant
 1. **Launch a PowerShell terminal on your PC**
 
 2. **Download the script**:
-   ```powershell
-   Save the provided script to a `.ps1` file, for example, `GetAzureInfo.ps1`.
+```
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/davidokeyode/azure-cloudsec-practitioner/main/GetEntraIDInfo/GetEntraIDInfo.ps1" -OutFile "GetEntraIDInfo.ps1"
 
-3. **Open PowerShell**:
+Unblock-File -Path .\GetEntraIDInfo.ps1
 
+Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
+```
+
+3. **Execute the script, providing the email as an argument:**:
+* Replace **`example@domain.onmicrosoft.com`** with the email or username you want to query.
 ```
 .\GetAzureInfo.ps1 -Email "example@domain.onmicrosoft.com"
 ```
+
+4. **Output Details**
+* The script provides the following output details:
+   * **Entra ID Discovery**: This indicates whether the domain exists in Entra ID.
+   * **Entra ID Configuration**: This provides information on how Entra ID is implemented for the domain.
+   * **Entra Tenant ID**: Displays the Entra ID Tenant ID if Entra ID is in use.
+   * **Entra Tenant Region**: Indicates the region of the Entra ID tenant.
+   * **User State**: Provides the state of the user in the Entra ID tenant.
+   * **Federation**: Indicates if Federation is configured or not.
+   * **Federation Auth URL**: If Federation is configured, this URL provides the authentication endpoint for the federation service.
 

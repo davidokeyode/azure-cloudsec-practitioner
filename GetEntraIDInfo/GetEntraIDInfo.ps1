@@ -29,15 +29,35 @@ $jsonData = Invoke-RestMethod -Uri $url2
 # Extract the Tenant ID directly from the issuer URL
 $tenantId = ($jsonData.issuer -split "/")[-2]
 
+# Interpret the RealmInfo Success value
+$realmInfoSuccessMapping = @{
+    "true" = "Domain exists in Entra ID"
+    "false" = "Domain does not exist in Entra ID"
+}
+
+# Interpret the NameSpaceType value
+$nameSpaceTypeMapping = @{
+    "Managed" = "Managed domain - Entra ID used for authentication"
+    "Federated" = "Federated domain - External identity provider used for authentication"
+}
+
+# Interpret the UserState value
+$userStateMapping = @{
+    0 = "User does not exist in the tenant"
+    1 = "User exists in the tenant"
+    2 = "User is required to enter a full UPN"
+}
+
 # Determine Federation status and Auth URL
 $federationStatus = if ($xmlData.RealmInfo.IsFederatedNS -eq "true") { "Configured" } else { "NotConfigured" }
 $federationAuthURL = if ($federationStatus -eq "Configured") { $xmlData.RealmInfo.AuthURL } else { $null }
 
 # Output the desired information
-Write-Emphasized "Entra ID Usage:" $($xmlData.RealmInfo.NameSpaceType)
+Write-Emphasized "Entra ID Discovery:" $realmInfoSuccessMapping[$xmlData.RealmInfo.Success]
+Write-Emphasized "Entra ID Configuration:" $nameSpaceTypeMapping[$xmlData.RealmInfo.NameSpaceType]
 Write-Emphasized "Entra Tenant ID:" $tenantId
 Write-Emphasized "Entra Tenant Region:" $($jsonData.tenant_region_scope)
-Write-Emphasized "User State:" $($xmlData.RealmInfo.UserState)
+Write-Emphasized "User State:" $userStateMapping[[int]$xmlData.RealmInfo.UserState]
 Write-Emphasized "Federation:" $federationStatus
 
 if ($federationAuthURL) {
