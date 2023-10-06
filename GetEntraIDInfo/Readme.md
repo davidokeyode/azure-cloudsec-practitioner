@@ -8,7 +8,9 @@ This PowerShell script fetches and displays information about an Entra ID tenant
 
 ## Usage
 
-1. **Launch a PowerShell terminal on your PC**
+1. **Launch a PowerShell terminal on your PC OR on the Azure Pentest VM**
+* https://github.com/davidokeyode/azure-cloudsec-practitioner/tree/main/pentest-vm-win
+* https://davidokeyode.medium.com/azure-cloudsec-practitioner-series-1-deploying-an-azure-pentest-vm-f65adbc40edb
 
 2. **Download the script**:
 ```
