@@ -62,3 +62,4 @@ Invoke-MSOLSpray -UserList .\users.txt -Password "PASSWORD_FROM_THE_ATTACK_PATH_
 notepad sprayresults.txt
 ```
 
+### 

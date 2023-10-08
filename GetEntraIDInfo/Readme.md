@@ -37,3 +37,17 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
    * **Federation**: Indicates if Federation is configured or not.
    * **Federation Auth URL**: If Federation is configured, this URL provides the authentication endpoint for the federation service.
 
+
+## Alternative
+* You can also use the AADInternals tool to get similar information:
+   * https://aadinternals.com/aadinternals/ 
+```
+## Install the module
+Install-Module AADInternals
+
+## Import AADInternals module
+Import-Module AADInternals
+
+## Get Entra ID information
+Get-AADIntLoginInformation -Username "example@domain.onmicrosoft.com"
+```
