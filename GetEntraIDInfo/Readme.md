@@ -24,7 +24,7 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 3. **Execute the script, providing the email as an argument:**:
 * Replace **`example@domain.onmicrosoft.com`** with the email or username you want to query.
 ```
-.\GetAzureInfo.ps1 -Email "example@domain.onmicrosoft.com"
+.\GetEntraIDInfo.ps1 -Email "example@domain.onmicrosoft.com"
 ```
 
 4. **Output Details**

@@ -62,6 +62,7 @@ Copy-Item -Path "$env:SystemDrive\PentestTools\Azure\VulnerableEnv\BadZure\users
 ```
 Invoke-MSOLSpray -UserList .\users.txt -Password "PASSWORD_FROM_THE_ATTACK_PATH_OUTPUT" -Verbose -OutFile .\sprayresults.txt
 ```
+** Note the non-existent user and the user with MFA configured
 
 4. View the result
 * Notice that the user with the password from the attack path output was compromised
@@ -92,6 +93,14 @@ cd $env:SystemDrive\PentestTools\Azure\Attack\AzureHound
 
 ./azurehound -j "ey..." list users --tenant "contoso.onmicrosoft.com"
 ```
+
+
+### AADInternals Info Check
+```
+
+```
+
+
 
 ### Analyze the output of AzureHound using BloodHound
 * This identifies attack paths
