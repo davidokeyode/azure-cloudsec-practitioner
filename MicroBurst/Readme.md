@@ -1,7 +1,12 @@
 
 ### Prepare the environment
+* azpentestenvXX
 ```
-Invoke-WebRequest -Uri
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+$url = "https://raw.githubusercontent.com/davidokeyode/azure-cloudsec-practitioner/main/pentest-scenarios/02-platform-resource-enum/platform-resource-enumeration.ps1"
+
+Invoke-Expression (Invoke-WebRequest -Uri $url).Content
 ```
 
 ### Run from Pentest VM
@@ -30,7 +35,15 @@ Invoke-EnumerateAzureSubDomains -Base azurepentesting
 
 
 
+### Cleanup the environment
+* azpentestenvXX
+```
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
+$url = "https://raw.githubusercontent.com/davidokeyode/azure-cloudsec-practitioner/main/pentest-scenarios/02-platform-resource-enum/platform-resource-enumeration-cleanup.ps1"
+
+Invoke-Expression (Invoke-WebRequest -Uri $url).Content
+```
 
 
 
