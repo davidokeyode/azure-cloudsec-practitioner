@@ -1,6 +1,8 @@
+
+# Run from your pentest VM
 $group = "OMIGOD-RG"
 $location = "eastus"
-$workspace = "$location-workspace"
+$workspace = "deployMSSentinel2Go"
 
 # Store your pentest VM public IP address in a variable
 $response = Invoke-RestMethod -Uri 'http://ipinfo.io/ip'
@@ -16,3 +18,7 @@ $workspacekey = $(az monitor log-analytics workspace get-shared-keys --resource-
 
 # Deploy a Linux VM with OMIGod vulnerability
 az deployment group create --name "omigod-vm-deployment" --resource-group "$group" --template-uri "https://raw.githubusercontent.com/OTRF/Microsoft-Sentinel2Go/master/grocery-list/Linux/demos/CVE-2021-38647-OMI/azuredeploy.json" --parameters workspaceId="$workspaceid" workspaceKey="$workspacekey" adminUsername="azureadmin" authenticationType="password" adminPasswordOrKey="awrZzD9DJmKKXsJa" allowedIPAddresses="$publicIP"
+
+# Obtain the public IP address of the VM
+$VmIP = "$(az vm show -d -g $group -n UBUNTU5 --query publicIps -o tsv)"
+Write-Host "VM Public IP: $VmIP"
